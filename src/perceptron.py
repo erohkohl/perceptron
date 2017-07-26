@@ -15,7 +15,6 @@ class Perceptron():
     # First calculate all feature vectors, which are not correct classified with the current weight. Afterwards apply
     # the perceptron learning rule to them.
     def train(self):
-        weight_new = [0.0, 0.0, 0.0]
         weight_old = self.weights[len(self.weights) - 1]
         (is_lin_sep, y_w) = self.is_linear_separation(weight_old)
 
@@ -26,13 +25,13 @@ class Perceptron():
                 sum[1] = sum[1] - self.target_values[i] * self.train_data[0][i]
                 sum[2] = sum[2] - self.target_values[i] * self.train_data[1][i]
 
+            weight_new = [0.0, 0.0, 0.0]
             for i in range(0, 3, 1):
                 weight_new[i] = weight_old[i] - self.rate * sum[i]
 
             self.weights.append(weight_new)
             weight_old = self.weights[len(self.weights) - 1]
             (is_lin_sep, y_w) = self.is_linear_separation(weight_old)
-
         return self.weights
 
     # Method determines whether the current weight classifies a feature vector as member of class 1 or -1.
