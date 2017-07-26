@@ -9,8 +9,7 @@ install:
   - pip install codecov
 
 script:
-  - cd
-  - coverage run test/perceptron.py
+  - coverage run ./test/perceptron.py
 
 after_success:
   - codecov
