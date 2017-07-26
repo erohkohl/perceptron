@@ -21,9 +21,9 @@ class Perceptron():
     def train(self):
         weight_old = self.weights[len(self.weights) - 1]
         (is_lin_sep, y_w) = self.is_linear_separation(weight_old)
-        delta = 0
+        delta = 1
 
-        while is_lin_sep == False or delta > self.THRESHOLD:
+        while is_lin_sep == False and delta > self.THRESHOLD:
             sum = [0.0, 0.0, 0.0]
             for i in y_w:
                 sum[0] = sum[0] - 1
@@ -43,6 +43,8 @@ class Perceptron():
 
     # Method determines whether the current weight classifies a feature vector as member of class 1 or -1.
     def classify(self, weight, x_vec):
+
+        # The first entry of our weight vec stores the absolute member of the discriminant.
         value = weight[0]
         for i in range(1, 3, 1):
             value = value + weight[i] * x_vec[i - 1]
