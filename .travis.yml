@@ -5,12 +5,5 @@ language: python
 python:
   - 3.5
 
-install:
-  - pip install codecov
-
 script:
-  - sudo set PYTHONPATH=%PYTHONPATH%; ./src/perceptron.py
-  - coverage run ./test/perceptron.py
-
-after_success:
-  - codecov
+  - python -m unittest test/perceptron.py
