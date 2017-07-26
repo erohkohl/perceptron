@@ -1,17 +1,13 @@
 import numpy as np
 from numpy import linalg as LA
 
-"""
-This class implements a linear classifier with the perceptron algorithm for a initial weight, train and target vector.
-"""
 
-
+# This class implements a linear classifier with the perceptron algorithm for a initial weight, train and target vector.
 class Perceptron():
-    weights = []
     THRESHOLD = 0.001
 
     def __init__(self, weight, rate, train_data, target_values):
-        self.weights.append(weight)
+        self.weight = weight
         self.rate = rate
         self.train_data = train_data
         self.target_values = target_values
@@ -19,7 +15,9 @@ class Perceptron():
     # First calculate all feature vectors, which are not correct classified with the current weight. Afterwards apply
     # the perceptron learning rule to them.
     def train(self):
-        weight_old = self.weights[len(self.weights) - 1]
+        weights = []
+        weights.append(self.weight)
+        weight_old = weights[len(weights) - 1]
         (is_lin_sep, y_w) = self.is_linear_separation(weight_old)
         delta = 1
 
@@ -34,12 +32,12 @@ class Perceptron():
             for i in range(0, 3, 1):
                 weight_new[i] = weight_old[i] - self.rate * sum[i]
 
-            self.weights.append(weight_new)
+            weights.append(weight_new)
             delta = LA.norm(np.subtract(weight_old, weight_new))
-            weight_old = self.weights[len(self.weights) - 1]
+            weight_old = weights[len(weights) - 1]
             (is_lin_sep, y_w) = self.is_linear_separation(weight_old)
 
-        return self.weights
+        return weights
 
     # Method determines whether the current weight classifies a feature vector as member of class 1 or -1.
     def classify(self, weight, x_vec):

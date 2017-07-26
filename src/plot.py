@@ -7,7 +7,7 @@ import src.perceptron
 train_data = [[1.0, 2.0, 4.0, 3.0], [2.0, 3.0, 3.0, 5.0]]
 target_values = [1, 1, -1, -1]
 weight = [4.0, -1.5, -1.0]
-rate = 0.1;
+rate = 0.1
 
 perceptron = src.perceptron.Perceptron(weight, rate, train_data, target_values)
 weights_all = perceptron.train()
