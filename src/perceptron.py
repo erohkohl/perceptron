@@ -42,7 +42,7 @@ class Perceptron():
     # Method determines whether the current weight classifies a feature vector as member of class 1 or -1.
     def classify(self, weight, x_vec):
 
-        # The first entry of our weight vec stores the absolute member of the discriminant.
+        # The first entry of our weight vector stores the absolute member of the discriminant.
         value = weight[0]
         for i in range(1, 3, 1):
             value = value + weight[i] * x_vec[i - 1]
