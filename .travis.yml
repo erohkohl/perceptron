@@ -1,5 +1,15 @@
-language: python
-python:
-  - "3.5"
+sudo: false
 
-script: python -m unittest test/perceptron.py
+language: python
+
+python:
+  - 3.5
+
+install:
+  - pip install codecov
+
+script:
+  - coverage run ./test/perceptron.py
+
+after_success:
+  - codecov
