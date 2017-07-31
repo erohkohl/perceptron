@@ -55,9 +55,9 @@ class Perceptron():
 
         # Stores all not correct classified feature vectors
         y_w = []
-        for i in range(0, len(self.train_data[0]), 1):
-            x_1 = self.train_data[0][i]
-            x_2 = self.train_data[1][i]
+        for i, (a, b) in enumerate(zip(self.train_data[0], self.train_data[1])):
+            x_1 = a
+            x_2 = b
             if self.classify(weight, [x_1, x_2]) != self.target_values[i]:
                 y_w.append(i)
 
